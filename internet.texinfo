@@ -357,3 +357,112 @@ Here is an example of setting the variable:
 (setq internet-openvpn-config-directory
       "/home/user-name/openvpn/configurations/")
 @end lisp
+
+@node Usage
+@chapter Usage
+
+@cindex Usage
+
+You must do the required setup before this package will work properly.
+This setup includes installing the required dependencies and making
+the required configurations.
+
+@xref{Dependencies}
+
+@xref{Configuration}
+
+@section Ethernet Connection
+
+@cindex Ethernet connecting
+
+@findex internet-ethernet-connect
+
+@kindex internet-ethernet-connect
+
+@kbd{M-x internet-ethernet-connect} will make an Ethernet connection.
+
+@findex internet-ethernet-disconnect
+
+@kindex internet-ethernet-disconnect
+
+@kbd{M-x internet-ethernet-disconnect} will disconnect the Ethernet
+connection.
+
+@section Ethernet and OpenVPN Connection
+
+@cindex Ethernet and OpenVPN connecting
+
+@findex internet-ethernet-openvpn-connect
+
+@kindex internet-ethernet-openvpn-connect
+
+@kbd{M-x internet-ethernet-openvpn-connect} will make an Ethernet and
+OpenVPN connection.  You will be prompted for the OpenVPN
+configuration file to use when connecting.
+
+@findex internet-ethernet-openvpn-disconnect
+
+@kindex internet-ethernet-openvpn-disconnect
+
+@kbd{M-x internet-ethernet-openvpn-disconnect} This will disconnect
+the Ethernet and OpenVPN connection.
+
+@section Wireless Network Configuration
+
+@cindex Wireless Network Configuration
+
+@findex internet-add-wireless-configuration
+
+@kindex internet-add-wireless-configuration
+
+@kbd{M-x internet-add-wireless-configuration} will add a
+@code{wpa_supplicant} configuration file for a wireless network.  You
+will be prompted for a network name, network SSID and network
+password.
+
+@findex internet-remove-wireless-configuration
+
+@kindex internet-remove-wireless-configuration
+
+@kbd{M-x internet-remove-wireless-configuration} will remove a
+@code{wpa_supplicant} configuration file.  You will be prompted for
+which configuration file to remove.
+
+@section Wireless Connection
+
+@cindex Wireless Connection
+
+@findex internet-wireless-connect
+
+@kindex internet-wireless-connect
+
+@kbd{M-x internet-wireless-connect} will make a wireless connection.
+You will be prompted for the @code{wpa_supplicant} configuration file
+to use when connecting.
+
+@findex internet-wireless-disconnect
+
+@kindex internet-wireless-disconnect
+
+@kbd{M-x internet-wireless-disconnect} will disconnect the wireless
+connection.
+
+@section Wireless and OpenVPN Connection
+
+@cindex Wireless and OpenVPN Connection
+
+@findex internet-wireless-openvpn-connect
+
+@kindex internet-wireless-openvpn-connect
+
+@kbd{M-x internet-wireless-openvpn-connect} will make a wireless and
+OpenVPN connection.  You will be prompted for the
+@code{wpa_supplicant} configuration file and the @code{openvpn}
+configuration file to use when connecting.
+
+@findex internet-wireless-openvpn-disconnect
+
+@kindex internet-wireless-openvpn-disconnect
+
+@kbd{M-x internet-wireless-openvpn-disconnect} will disconnect the
+wireless and OpenVPN connection.
