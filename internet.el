@@ -6,7 +6,7 @@
 ;; Maintainer: Sean Hutchings <seanhut@yandex.com>
 ;; Created: 2020-11-18
 ;; Keywords: comm, processes, terminals, unix
-;; Version: 0.1.0-git
+;; Version: 0.1.0
 ;; Homepage: https://github.com/sean-hut/internet
 ;; License: BSD Zero Clause License (SPDX:0BSD)
 
