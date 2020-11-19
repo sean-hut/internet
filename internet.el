@@ -340,5 +340,23 @@ suffix."
 
     (save-excursion (delete-other-windows))))
 
+(defun internet-wireless-disconnect ()
+  "Disconnect from wireless network."
+  (interactive)
+
+  (let ((process-buffer "internet-wireless-disconnect")
+
+	(command (concat internet--kill-dhclient-command
+			 " && "
+			 internet--kill-wpa-supplicant-command
+			 " && "
+			 internet--ip-link-wireless-down-command
+			 " && "
+			 internet--rfkill-block-command)))
+
+    (async-shell-command command process-buffer process-buffer)
+
+    (save-excursion (delete-other-windows))))
+
 (provide 'internet)
 ;;; internet.el ends here
