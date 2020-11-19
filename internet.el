@@ -79,5 +79,17 @@
 (defvar internet-openvpn-config-directory nil
   "The directory where openvpn configuration files are located.")
 
+;;;;;;;;;;;;;;;;;;;;;
+;; rfkill commands ;;
+;;;;;;;;;;;;;;;;;;;;;
+
+(defconst internet--rfkill-unblock-command
+  (concat "sudo --stdin rfkill unblock " internet-rfkill-device-id)
+  "Command to soft unblock wireless device using rfkill.")
+
+(defconst internet--rfkill-block-command
+  (concat "sudo --stdin rfkill block " internet-rfkill-device-id)
+  "Command to soft block wireless device using rfkill.")
+
 (provide 'internet)
 ;;; internet.el ends here
