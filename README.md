@@ -8,8 +8,8 @@ Functionality:
 - Methods of connecting to the internet
     - Ethernet
 	- Wireless
-	- Ethernet and openvpn
-	- Wireless and openvpn
+	- Ethernet and OpenVPN
+	- Wireless and OpenVPN
 
 - Disconnect for the above connecting options
 
