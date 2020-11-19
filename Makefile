@@ -73,6 +73,8 @@ documentation-info : $(texinfo)
 > makeinfo --output=$(info_file) $(texinfo)
 
 documentation-html : $(texinfo)
+> rm --recursive --force $(html_directory)
+> mkdir $(html_directory)
 > makeinfo --html --output=$(html_directory) $(texinfo)
 
 .PHONY: clean
