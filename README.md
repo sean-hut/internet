@@ -17,11 +17,6 @@ Functionality:
 
 [emacs]: <https://www.gnu.org/software/emacs/>
 
-## Example Use
-
-Projects that are known to be using this project are listed in
-`example-use.md`.
-
 ## License
 
 The license file is `LICENSE`.
