@@ -1,6 +1,21 @@
 # Connect to the internet
 
-TODO Overview section.
+This [Emacs][emacs] package provides a variety of ways to connect to
+the internet.
+
+Functionality:
+
+- Methods of connecting to the internet
+    - Ethernet
+	- Wireless
+	- Ethernet and openvpn
+	- Wireless and openvpn
+
+- Disconnect for the above connecting options
+
+- Add and remove wireless network configurations
+
+[emacs]: <https://www.gnu.org/software/emacs/>
 
 ## Example Use
 
