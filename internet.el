@@ -287,5 +287,27 @@ STRING is the status of PROCESS."
 	   "internet-add-wireless-configuration"
 	   (string-trim-right string)))
 
+(defun internet-remove-wireless-configuration (configuration-file)
+  "Remove a wpa_supplicant configuration file.
+
+CONFIGURATION-FILE is the wpa_supplicant configuration file to remove."
+  (interactive
+
+   (list (completing-read
+	  "wpa_supplicant configuration file to remove: "
+	  (directory-files internet-wpa-supplicant-config-directory)
+	  nil
+	  t)))
+
+  (let ((command (concat "sudo --stdin rm "
+			 internet-wpa-supplicant-config-directory
+			 configuration-file))
+
+	(process-buffer "internet-remove-wireless-configuration"))
+
+    (async-shell-command command process-buffer process-buffer)
+
+    (save-excursion (delete-other-windows))))
+
 (provide 'internet)
 ;;; internet.el ends here
