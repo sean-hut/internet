@@ -49,5 +49,12 @@
 (require 'seq)
 (require 'subr-x)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ethernet connection configuration variables ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defvar internet-ethernet-interface nil
+  "Ethernet interface.")
+
 (provide 'internet)
 ;;; internet.el ends here
