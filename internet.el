@@ -309,5 +309,36 @@ CONFIGURATION-FILE is the wpa_supplicant configuration file to remove."
 
     (save-excursion (delete-other-windows))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; wireless connection ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun internet-wireless-connect (network-name)
+  "Connect to a wireless network.
+
+NETWORK-NAME is the name of the network wpa_supplicant config file without the
+suffix."
+  (interactive
+
+   (list (completing-read "Wifi network to connect to: "
+			  (internet--files-without-extension-in-directory
+			   internet-wpa-supplicant-config-directory ".conf")
+			  nil
+			  t)))
+
+  (let ((process-buffer "internet-wireless-connect")
+
+	(command (concat internet--rfkill-unblock-command
+			 " && "
+			 internet--ip-link-wireless-up-command
+			 " && "
+			 (internet--wpa-supplicant-connect-command network-name)
+			 " && "
+			 internet--dhclient-get-wireless-ip-address-command)))
+
+    (async-shell-command command process-buffer process-buffer)
+
+    (save-excursion (delete-other-windows))))
+
 (provide 'internet)
 ;;; internet.el ends here
