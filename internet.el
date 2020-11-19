@@ -56,5 +56,21 @@
 (defvar internet-ethernet-interface nil
   "Ethernet interface.")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; wireless connection configuration variables ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defvar internet-wpa-supplicant-config-directory nil
+  "The directory where wpa_supplicant configuration files are located.")
+
+(defvar internet-rfkill-device-id nil
+  "Device ID for rfkill.")
+
+(defvar internet-wireless-interface nil
+  "Wireless interface.")
+
+(defvar internet-wpa-supplicant-driver nil
+  "Driver to be used with wpa_supplicant.")
+
 (provide 'internet)
 ;;; internet.el ends here
