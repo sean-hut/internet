@@ -22,3 +22,11 @@ This project uses the [ISO 8601 date format][iso] of (YYYY-MM-DD).
 [iso]: <https://web.archive.org/web/20201012024406/https://www.iso.org/iso-8601-date-and-time-format.html>
 
 ## [Unreleased]
+
+### Added
+- Readme
+- Changelog
+- BSD zero clause license (SPDX: 0BSD)
+- Internet emacs package that provides a variety of ways to connect to the internet
+- Info documentation
+- HTML documentation
