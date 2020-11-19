@@ -72,5 +72,12 @@
 (defvar internet-wpa-supplicant-driver nil
   "Driver to be used with wpa_supplicant.")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; openvpn connection configuration variables ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defvar internet-openvpn-config-directory nil
+  "The directory where openvpn configuration files are located.")
+
 (provide 'internet)
 ;;; internet.el ends here
