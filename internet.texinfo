@@ -1,0 +1,15 @@
+\input texinfo
+@setfilename internet.info
+
+@titlepage
+@title Internet
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top Internet
+
+This manual is for Internet 0.1.0
+@end ifnottex
