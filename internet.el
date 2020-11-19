@@ -394,5 +394,25 @@ VPN is the name of the vpn to connect to."
 
     (async-shell-command command process-buffer process-buffer)))
 
+(defun internet-wireless-openvpn-disconnect ()
+  "Disconnect from vpn and wireless network."
+  (interactive)
+
+  (let ((process-buffer "internet-wireless-openvpn-disconnect")
+
+	(command (concat internet--kill-openvpn-command
+			 " && "
+			 internet--kill-dhclient-command
+			 " && "
+			 internet--kill-wpa-supplicant-command
+			 " && "
+			 internet--ip-link-wireless-down-command
+			 " && "
+			 internet--rfkill-block-command)))
+
+    (async-shell-command command process-buffer process-buffer)
+
+    (save-excursion (delete-other-windows))))
+
 (provide 'internet)
 ;;; internet.el ends here
