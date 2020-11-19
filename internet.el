@@ -237,5 +237,55 @@ VPN is the name of the vpn to connect with."
 
     (save-excursion (delete-other-windows))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; wireless network configuration ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun internet-add-wireless-configuration
+    (network-name network-ssid network-password)
+  "Add a wpa_supplicant configuration file.
+
+NETWORK-NAME is the name that will be given to the wpa_supplicant
+configuration file with a .conf suffix added.  It should be alpanumeric.
+NETWORK-SSID is the ssid of the network.
+NETWORK-PASSWORD is the password of the network."
+  (interactive
+
+   (list (read-string "Network name (only alphanumeric characters): ")
+	 (read-string "Wifi network SSID: ")
+	 (read-passwd "Wifi network password: " t)))
+
+  (let ((command (concat "sudo --stdin "
+			 "sh -c '"
+			 "wpa_passphrase "
+			 network-ssid
+			 " "
+			 network-password
+			 " > "
+			 (concat
+			  internet-wpa-supplicant-config-directory
+			  network-name
+			  ".conf")
+			 "'"))
+	(process-buffer "internet-add-wireless-configuration"))
+
+    (async-shell-command command process-buffer process-buffer)
+
+    (save-excursion (delete-other-windows))
+
+    (set-process-sentinel
+     (get-process (get-buffer-process process-buffer))
+     'internet--sentinel-add-wireless-configuration)))
+
+(defun internet--sentinel-add-wireless-configuration (process string)
+  "Outputs the name and status of a process.
+
+PROCESS is the process to report on.
+STRING is the status of PROCESS."
+
+  (message "%s %s"
+	   "internet-add-wireless-configuration"
+	   (string-trim-right string)))
+
 (provide 'internet)
 ;;; internet.el ends here
