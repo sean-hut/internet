@@ -91,5 +91,25 @@
   (concat "sudo --stdin rfkill block " internet-rfkill-device-id)
   "Command to soft block wireless device using rfkill.")
 
+;;;;;;;;;;;;;;;;;;;;;;
+;; ip link commands ;;
+;;;;;;;;;;;;;;;;;;;;;;
+
+(defconst internet--ip-link-wireless-up-command
+  (concat "sudo --stdin ip link set " internet-wireless-interface " up")
+  "Command to set wireless interface to up using ip link.")
+
+(defconst internet--ip-link-wireless-down-command
+  (concat "sudo --stdin ip link set " internet-wireless-interface " down")
+  "Command to set wireless interface to down using ip link.")
+
+(defconst internet--ip-link-ethernet-up-command
+  (concat "sudo --stdin ip link set " internet-ethernet-interface " up")
+  "Command to set wireless interface to up using ip link.")
+
+(defconst internet--ip-link-ethernet-down-command
+  (concat "sudo --stdin ip link set " internet-ethernet-interface " down")
+  "Command to set wireless interface to down using ip link.")
+
 (provide 'internet)
 ;;; internet.el ends here
