@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Configuration (Internet)</title>
+
+<meta name="description" content="Configuration (Internet)">
+<meta name="keywords" content="Configuration (Internet)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Index.html" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Usage.html" rel="next" title="Usage">
+<link href="Dependencies.html" rel="prev" title="Dependencies">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Configuration"></span><div class="header">
+<p>
+Next: <a href="Usage.html" accesskey="n" rel="next">Usage</a>, Previous: <a href="Dependencies.html" accesskey="p" rel="prev">Dependencies</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Configuration-1"></span><h2 class="chapter">3 Configuration</h2>
+
+<span id="index-Configuration"></span>
+
+<span id="Configure-for-Ethernet-connecting"></span><h3 class="section">3.1 Configure for Ethernet connecting</h3>
+
+<span id="index-Configure-for-Ethernet-connecting"></span>
+
+<span id="index-internet_002dethernet_002dinterface"></span>
+
+<p>Set the <code>internet-ethernet-interface</code> variable to the ethernet
+interface you will be using.  You can look up your wireless interface
+by running the command <code>ip link show</code>.  It will start with
+<code>enp</code> or <code>eth</code>.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-ethernet-interface &quot;enp3s0&quot;)
+</pre></div>
+
+<span id="Configure-for-Ethernet-and-OpenVPN-connecting"></span><h3 class="section">3.2 Configure for Ethernet and OpenVPN connecting</h3>
+
+<span id="index-Configure-for-Ethernet-and-OpenVPN-connecting"></span>
+
+<span id="index-internet_002dethernet_002dinterface-1"></span>
+
+<p>Set the <code>internet-ethernet-interface</code> variable to the ethernet
+interface you will be using.  You can look up your wireless interface
+by running the command <code>ip link show</code>.  It will start with
+<code>enp</code> or <code>eth</code>.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-ethernet-interface &quot;enp3s0&quot;)
+</pre></div>
+
+<span id="index-internet_002dopenvpn_002dconfig_002ddirectory"></span>
+
+<p>Set the <code>internet-openvpn-config-directory</code> variable to the
+directory where you have your <code>openvpn</code> configuration files.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-openvpn-config-directory
+      &quot;/home/user-name/openvpn/configurations/&quot;)
+</pre></div>
+
+<span id="Configure-for-wireless-connecting"></span><h3 class="section">3.3 Configure for wireless connecting</h3>
+
+<span id="index-Configure-for-wireless-connecting"></span>
+
+<span id="index-internet_002drfkill_002ddevice_002did"></span>
+
+<p>Set the <code>internet-rfkill-device-id</code> variable to the wireless
+device id for the device you will be using.  You can look up your
+wireless device id by running the command <code>rfkill</code>.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-rfkill-device-id &quot;0&quot;)
+</pre></div>
+
+<span id="index-internet_002dwireless_002dinterface"></span>
+
+<p>Set the <code>internet-wireless-interface</code> variable to the wireless
+interface you will be using.  You can look up your wireless interface
+by running the command <code>ip link show</code>.  It will start with
+<code>wlp</code> or <code>wlan</code>.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-wireless-interface &quot;wlp4s0&quot;)
+</pre></div>
+
+<span id="index-internet_002dwpa_002dsupplicant_002dconfig_002ddirectory"></span>
+
+<p>Set the <code>internet-wpa-supplicant-config-directory</code> variable to
+the directory where you have your <code>wpa_supplicant</code> configuration
+files.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-wpa-supplicant-config-directory
+      &quot;/etc/wpa_supplicant/&quot;)
+</pre></div>
+
+<span id="index-internet_002dwpa_002dsupplicant_002ddriver"></span>
+
+<p>Set the <code>internet-wpa-supplicant-driver</code> variable to your
+<code>wpa_supplicant</code> driver.  For information on the driver options
+refer to the <code>wpa_supplicant</code> manual&rsquo;s available drivers section
+with command <code>man wpa_supplicant</code>.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-wpa-supplicant-driver &quot;nl80211&quot;)
+</pre></div>
+
+<span id="Configure-for-wireless-and-OpenVPN-connecting"></span><h3 class="section">3.4 Configure for wireless and OpenVPN connecting</h3>
+
+<span id="index-Configure-for-wireless-and-OpenVPN-connecting"></span>
+
+<span id="index-internet_002drfkill_002ddevice_002did-1"></span>
+
+<p>Set the <code>internet-rfkill-device-id</code> variable to the wireless
+device id for the device you will be using.  You can look up your
+wireless device id by running the command <code>rfkill</code>.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-rfkill-device-id &quot;0&quot;)
+</pre></div>
+
+<span id="index-internet_002dwireless_002dinterface-1"></span>
+
+<p>Set the <code>internet-wireless-interface</code> variable to the wireless
+interface you will be using.  You can look up your wireless interface
+by running the command <code>ip link show</code>.  It will start with
+<code>wlp</code> or <code>wlan</code>.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-wireless-interface &quot;wlp4s0&quot;)
+</pre></div>
+
+<span id="index-internet_002dwpa_002dsupplicant_002dconfig_002ddirectory-1"></span>
+
+<p>Set the <code>internet-wpa-supplicant-config-directory</code> variable to
+the directory where you have your <code>wpa_supplicant</code> configuration
+files.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-wpa-supplicant-config-directory
+      &quot;/etc/wpa_supplicant/&quot;)
+</pre></div>
+
+<span id="index-internet_002dwpa_002dsupplicant_002ddriver-1"></span>
+
+<p>Set the <code>internet-wpa-supplicant-driver</code> variable to your
+<code>wpa_supplicant</code> driver.  For information on the driver options
+refer to the <code>wpa_supplicant</code> manual&rsquo;s available drivers section
+with command <code>man wpa_supplicant</code>.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-wpa-supplicant-driver &quot;nl80211&quot;)
+</pre></div>
+
+<span id="index-internet_002dopenvpn_002dconfig_002ddirectory-1"></span>
+
+<p>Set the <code>internet-openvpn-config-directory</code> variable to the
+directory where you have your <code>openvpn</code> configuration files.
+</p>
+<p>Here is an example of setting the variable:
+</p>
+<div class="lisp">
+<pre class="lisp">(setq internet-openvpn-config-directory
+      &quot;/home/user-name/openvpn/configurations/&quot;)
+</pre></div>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Usage.html" accesskey="n" rel="next">Usage</a>, Previous: <a href="Dependencies.html" accesskey="p" rel="prev">Dependencies</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

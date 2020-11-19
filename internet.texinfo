@@ -1,0 +1,509 @@
+\input texinfo
+@setfilename internet.info
+
+@titlepage
+@title Internet
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top Internet
+
+This manual is for Internet 0.1.0
+@end ifnottex
+
+@menu
+* Overview::
+* Dependencies::
+* Configuration::
+* Usage::
+* License::
+* Index::
+@end menu
+
+@node Overview
+@chapter Overview
+
+@cindex Overview
+
+Internet is an Emacs package that provides a variety of ways to
+connect to the internet.
+
+Before using setup the dependencies and configuration for your desired
+connection methods.
+
+Functionality:
+
+@itemize @bullet
+
+@item
+Methods of connecting to the internet
+
+@itemize @minus
+
+@item
+Ethernet
+
+@item
+Wireless
+
+@item
+Ethernet and openvpn
+
+@item
+Wireless and openvpn
+
+@end itemize
+
+@item
+Disconnect for the above connecting options
+
+@item
+Add and remove wireless network configurations
+
+@end itemize
+
+@node Dependencies
+@chapter Dependencies
+
+@cindex Dependencies
+
+@section Ethernet Connection
+
+@cindex Ethernet Connection
+
+If you are connecting using Ethernet you need to have these programs
+installed:
+
+@itemize @bullet
+
+@item
+@command{ip-link}
+
+@item
+@command{dhclient}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@section Ethernet OpneVPN Connection
+
+@cindex Ethernet OpenVPN Connection
+
+If you are connecting using Ethernet and OpenVPN you need to have
+these programs installed:
+
+@itemize @bullet
+
+@item
+@command{ip-link}
+
+@item
+@command{dhclient}
+
+@item
+@command{openvpn}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@section Wireless Connection
+
+@cindex Wireless Connection
+
+If you are connecting using wireless you need to have these programs
+installed:
+
+@itemize @bullet
+
+@item
+@command{rfkill}
+
+@item
+@command{ip-link}
+
+@item
+@command{wpa_supplicant}
+
+@item
+@command{dhclient}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@section Wireless Openvpn Connection
+
+@cindex Wireless OpenVPN Connection
+
+If you are connecting using wireless and OpenVPN you need to have
+these programs installed:
+
+@itemize @bullet
+
+@item
+@command{rfkill}
+
+@item
+@command{ip-link}
+
+@item
+@command{wpa_supplicant}
+
+@item
+@command{dhclient}
+
+@item
+@command{openvpn}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@section Creating Wireless Configurations
+
+@cindex Creating Wireless Configurations
+
+If you are going to use this package to create wireless configurations
+then you need to have these programs installed:
+
+@itemize @bullet
+
+@item
+@command{wpa_passphrase}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@node Configuration
+@chapter Configuration
+
+@cindex Configuration
+
+@section Configure for Ethernet connecting
+
+@cindex Configure for Ethernet connecting
+
+@vindex internet-ethernet-interface
+
+Set the @code{internet-ethernet-interface} variable to the ethernet
+interface you will be using.  You can look up your wireless interface
+by running the command @command{ip link show}.  It will start with
+@code{enp} or @code{eth}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-ethernet-interface "enp3s0")
+@end lisp
+
+@section Configure for Ethernet and OpenVPN connecting
+
+@cindex Configure for Ethernet and OpenVPN connecting
+
+@vindex internet-ethernet-interface
+
+Set the @code{internet-ethernet-interface} variable to the ethernet
+interface you will be using.  You can look up your wireless interface
+by running the command @command{ip link show}.  It will start with
+@code{enp} or @code{eth}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-ethernet-interface "enp3s0")
+@end lisp
+
+@vindex internet-openvpn-config-directory
+
+Set the @code{internet-openvpn-config-directory} variable to the
+directory where you have your @code{openvpn} configuration files.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-openvpn-config-directory
+      "/home/user-name/openvpn/configurations/")
+@end lisp
+
+@section Configure for wireless connecting
+
+@cindex Configure for wireless connecting
+
+@vindex internet-rfkill-device-id
+
+Set the @code{internet-rfkill-device-id} variable to the wireless
+device id for the device you will be using.  You can look up your
+wireless device id by running the command @command{rfkill}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-rfkill-device-id "0")
+@end lisp
+
+@vindex internet-wireless-interface
+
+Set the @code{internet-wireless-interface} variable to the wireless
+interface you will be using.  You can look up your wireless interface
+by running the command @command{ip link show}.  It will start with
+@code{wlp} or @code{wlan}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wireless-interface "wlp4s0")
+@end lisp
+
+@vindex internet-wpa-supplicant-config-directory
+
+Set the @code{internet-wpa-supplicant-config-directory} variable to
+the directory where you have your @code{wpa_supplicant} configuration
+files.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wpa-supplicant-config-directory
+      "/etc/wpa_supplicant/")
+@end lisp
+
+@vindex internet-wpa-supplicant-driver
+
+Set the @code{internet-wpa-supplicant-driver} variable to your
+@code{wpa_supplicant} driver.  For information on the driver options
+refer to the @code{wpa_supplicant} manual's available drivers section
+with command @command{man wpa_supplicant}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wpa-supplicant-driver "nl80211")
+@end lisp
+
+@section Configure for wireless and OpenVPN connecting
+
+@cindex Configure for wireless and OpenVPN connecting
+
+@vindex internet-rfkill-device-id
+
+Set the @code{internet-rfkill-device-id} variable to the wireless
+device id for the device you will be using.  You can look up your
+wireless device id by running the command @command{rfkill}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-rfkill-device-id "0")
+@end lisp
+
+@vindex internet-wireless-interface
+
+Set the @code{internet-wireless-interface} variable to the wireless
+interface you will be using.  You can look up your wireless interface
+by running the command @command{ip link show}.  It will start with
+@code{wlp} or @code{wlan}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wireless-interface "wlp4s0")
+@end lisp
+
+@vindex internet-wpa-supplicant-config-directory
+
+Set the @code{internet-wpa-supplicant-config-directory} variable to
+the directory where you have your @code{wpa_supplicant} configuration
+files.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wpa-supplicant-config-directory
+      "/etc/wpa_supplicant/")
+@end lisp
+
+@vindex internet-wpa-supplicant-driver
+
+Set the @code{internet-wpa-supplicant-driver} variable to your
+@code{wpa_supplicant} driver.  For information on the driver options
+refer to the @code{wpa_supplicant} manual's available drivers section
+with command @command{man wpa_supplicant}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wpa-supplicant-driver "nl80211")
+@end lisp
+
+@vindex internet-openvpn-config-directory
+
+Set the @code{internet-openvpn-config-directory} variable to the
+directory where you have your @code{openvpn} configuration files.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-openvpn-config-directory
+      "/home/user-name/openvpn/configurations/")
+@end lisp
+
+@node Usage
+@chapter Usage
+
+@cindex Usage
+
+You must do the required setup before this package will work properly.
+This setup includes installing the required dependencies and making
+the required configurations.
+
+@xref{Dependencies}
+
+@xref{Configuration}
+
+@section Ethernet Connection
+
+@cindex Ethernet connecting
+
+@findex internet-ethernet-connect
+
+@kindex internet-ethernet-connect
+
+@kbd{M-x internet-ethernet-connect} will make an Ethernet connection.
+
+@findex internet-ethernet-disconnect
+
+@kindex internet-ethernet-disconnect
+
+@kbd{M-x internet-ethernet-disconnect} will disconnect the Ethernet
+connection.
+
+@section Ethernet and OpenVPN Connection
+
+@cindex Ethernet and OpenVPN connecting
+
+@findex internet-ethernet-openvpn-connect
+
+@kindex internet-ethernet-openvpn-connect
+
+@kbd{M-x internet-ethernet-openvpn-connect} will make an Ethernet and
+OpenVPN connection.  You will be prompted for the OpenVPN
+configuration file to use when connecting.
+
+@findex internet-ethernet-openvpn-disconnect
+
+@kindex internet-ethernet-openvpn-disconnect
+
+@kbd{M-x internet-ethernet-openvpn-disconnect} This will disconnect
+the Ethernet and OpenVPN connection.
+
+@section Wireless Network Configuration
+
+@cindex Wireless Network Configuration
+
+@findex internet-add-wireless-configuration
+
+@kindex internet-add-wireless-configuration
+
+@kbd{M-x internet-add-wireless-configuration} will add a
+@code{wpa_supplicant} configuration file for a wireless network.  You
+will be prompted for a network name, network SSID and network
+password.
+
+@findex internet-remove-wireless-configuration
+
+@kindex internet-remove-wireless-configuration
+
+@kbd{M-x internet-remove-wireless-configuration} will remove a
+@code{wpa_supplicant} configuration file.  You will be prompted for
+which configuration file to remove.
+
+@section Wireless Connection
+
+@cindex Wireless Connection
+
+@findex internet-wireless-connect
+
+@kindex internet-wireless-connect
+
+@kbd{M-x internet-wireless-connect} will make a wireless connection.
+You will be prompted for the @code{wpa_supplicant} configuration file
+to use when connecting.
+
+@findex internet-wireless-disconnect
+
+@kindex internet-wireless-disconnect
+
+@kbd{M-x internet-wireless-disconnect} will disconnect the wireless
+connection.
+
+@section Wireless and OpenVPN Connection
+
+@cindex Wireless and OpenVPN Connection
+
+@findex internet-wireless-openvpn-connect
+
+@kindex internet-wireless-openvpn-connect
+
+@kbd{M-x internet-wireless-openvpn-connect} will make a wireless and
+OpenVPN connection.  You will be prompted for the
+@code{wpa_supplicant} configuration file and the @code{openvpn}
+configuration file to use when connecting.
+
+@findex internet-wireless-openvpn-disconnect
+
+@kindex internet-wireless-openvpn-disconnect
+
+@kbd{M-x internet-wireless-openvpn-disconnect} will disconnect the
+wireless and OpenVPN connection.
+
+@node License
+@appendix License
+
+@cindex License
+
+Copyright @copyright{} 2020 Sean Hutchings
+
+@paragraphindent none
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+@paragraphindent none
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+
+@node Index
+@unnumbered Index
+
+@section Concept Index
+
+@printindex cp
+
+@section Keystroke Index
+
+@printindex ky
+
+@section Function Index
+
+@printindex fn
+
+@section Variable Index
+
+@printindex vr
+
+@bye
