@@ -147,5 +147,21 @@ NETWORK-NAME is the network to connect to."
   '"sudo --stdin pkill dhclient"
   "Command to kill dhclient process.")
 
+;;;;;;;;;;;;;;;;;;;;;;
+;; openvpn commands ;;
+;;;;;;;;;;;;;;;;;;;;;;
+
+(defun internet--openvpn-connect-command (vpn)
+  "Return a command to connect to a VPN using openvpn.
+
+VPN is the vpn to connect to."
+
+  (concat "sudo --stdin openvpn --config "
+	  (concat internet-openvpn-config-directory vpn ".ovpn")))
+
+(defconst internet--kill-openvpn-command
+  '"sudo --stdin pkill openvpn"
+  "Command to kill openvpn process.")
+
 (provide 'internet)
 ;;; internet.el ends here
