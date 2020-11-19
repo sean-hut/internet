@@ -221,5 +221,21 @@ VPN is the name of the vpn to connect with."
     
     (async-shell-command command process-buffer process-buffer)))
 
+(defun internet-ethernet-openvpn-disconnect ()
+  "Disconnect ethernet internet connection."
+  (interactive)
+
+  (let ((process-buffer "internet-ethernet-openvpn-disconnect")
+
+	(command (concat internet--kill-openvpn-command
+			 " && "
+			 internet--kill-dhclient-command
+			 " && "
+			 internet--ip-link-ethernet-down-command)))
+
+    (async-shell-command command process-buffer process-buffer)
+
+    (save-excursion (delete-other-windows))))
+
 (provide 'internet)
 ;;; internet.el ends here
