@@ -65,3 +65,122 @@ Add and remove wireless network configurations
 
 @end itemize
 
+@node Dependencies
+@chapter Dependencies
+
+@cindex Dependencies
+
+@section Ethernet Connection
+
+@cindex Ethernet Connection
+
+If you are connecting using Ethernet you need to have these programs
+installed:
+
+@itemize @bullet
+
+@item
+@command{ip-link}
+
+@item
+@command{dhclient}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@section Ethernet OpneVPN Connection
+
+@cindex Ethernet OpenVPN Connection
+
+If you are connecting using Ethernet and OpenVPN you need to have
+these programs installed:
+
+@itemize @bullet
+
+@item
+@command{ip-link}
+
+@item
+@command{dhclient}
+
+@item
+@command{openvpn}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@section Wireless Connection
+
+@cindex Wireless Connection
+
+If you are connecting using wireless you need to have these programs
+installed:
+
+@itemize @bullet
+
+@item
+@command{rfkill}
+
+@item
+@command{ip-link}
+
+@item
+@command{wpa_supplicant}
+
+@item
+@command{dhclient}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@section Wireless Openvpn Connection
+
+@cindex Wireless OpenVPN Connection
+
+If you are connecting using wireless and OpenVPN you need to have
+these programs installed:
+
+@itemize @bullet
+
+@item
+@command{rfkill}
+
+@item
+@command{ip-link}
+
+@item
+@command{wpa_supplicant}
+
+@item
+@command{dhclient}
+
+@item
+@command{openvpn}
+
+@item
+@command{sudo}
+
+@end itemize
+
+@section Creating Wireless Configurations
+
+@cindex Creating Wireless Configurations
+
+If you are going to use this package to create wireless configurations
+then you need to have these programs installed:
+
+@itemize @bullet
+
+@item
+@command{wpa_passphrase}
+
+@item
+@command{sudo}
+
+@end itemize
