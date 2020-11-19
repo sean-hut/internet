@@ -111,5 +111,25 @@
   (concat "sudo --stdin ip link set " internet-ethernet-interface " down")
   "Command to set wireless interface to down using ip link.")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; wpa_supplicant commands ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun internet--wpa-supplicant-connect-command (network-name)
+  "Return a command to connect to a wireless network using wpa_supplicant.
+
+NETWORK-NAME is the network to connect to."
+
+  (concat "sudo --stdin wpa_supplicant -B"
+	  " -D" internet-wpa-supplicant-driver
+	  " -c" (concat internet-wpa-supplicant-config-directory
+			network-name
+			".conf")
+	  " -i" internet-wireless-interface))
+
+(defconst internet--kill-wpa-supplicant-command
+  '"sudo --stdin pkill wpa_supplicant"
+  "Command to kill wpa_supplicant process.")
+
 (provide 'internet)
 ;;; internet.el ends here
