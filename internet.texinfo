@@ -13,3 +13,13 @@
 
 This manual is for Internet 0.1.0
 @end ifnottex
+
+@menu
+* Overview::
+* Dependencies::
+* Configuration::
+* Usage::
+* License::
+* Index::
+@end menu
+
