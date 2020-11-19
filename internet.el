@@ -181,5 +181,19 @@ VPN is the vpn to connect to."
 
     (save-excursion (delete-other-windows))))
 
+(defun internet-ethernet-disconnect ()
+  "Disconnect ethernet internet connection."
+  (interactive)
+
+  (let ((process-buffer "internet-ethernet-disconnect")
+
+	(command (concat internet--kill-dhclient-command
+			 " && "
+			 internet--ip-link-ethernet-down-command)))
+
+    (async-shell-command command process-buffer process-buffer)
+
+    (save-excursion (delete-other-windows))))
+
 (provide 'internet)
 ;;; internet.el ends here
