@@ -358,5 +358,41 @@ suffix."
 
     (save-excursion (delete-other-windows))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; wireless openvpn connection ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun internet-wireless-openvpn-connect (wireless-network vpn)
+  "Connect to wireless network and vpn.
+
+WIRELESS-NETWORK is the name of the wireless network to connect to.
+VPN is the name of the vpn to connect to."
+  (interactive
+
+   (list (completing-read "Wifi network to connect to: "
+			  (internet--files-without-extension-in-directory
+			   internet-wpa-supplicant-config-directory ".conf")
+			  nil
+			  t)
+	 (completing-read "VPN to connect to: "
+			  (internet--files-without-extension-in-directory
+			   internet-openvpn-config-directory ".ovpn")
+			  nil
+			  t)))
+
+  (let* ((process-buffer "internet-wireless-openvpn-connect")
+
+	 (command (concat internet--rfkill-unblock-command
+			  " && "
+			  internet--ip-link-wireless-up-command
+			  " && "
+			  (internet--wpa-supplicant-connect-command wireless-network)
+			  " && "
+			  internet--dhclient-get-wireless-ip-address-command
+			  " && "
+			  (internet--openvpn-connect-command vpn))))
+
+    (async-shell-command command process-buffer process-buffer)))
+
 (provide 'internet)
 ;;; internet.el ends here
