@@ -195,5 +195,31 @@ VPN is the vpn to connect to."
 
     (save-excursion (delete-other-windows))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ethernet and openvpn connection ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun internet-ethernet-openvpn-connect (vpn)
+  "Connect to the internet with ethernet.
+
+VPN is the name of the vpn to connect with."
+  (interactive
+
+   (list (completing-read "VPN to connect with: "
+			  (internet--files-without-extension-in-directory
+			   internet-openvpn-config-directory ".ovpn")
+			  nil
+			  t)))
+
+  (let ((process-buffer "internet-ethernet-openvpn-connect")
+
+	(command (concat internet--ip-link-ethernet-up-command
+			 " && "
+			 internet--dhclient-get-ethernet-ip-address-command
+			 " && "
+			 (internet--openvpn-connect-command vpn))))
+    
+    (async-shell-command command process-buffer process-buffer)))
+
 (provide 'internet)
 ;;; internet.el ends here
