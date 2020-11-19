@@ -163,5 +163,23 @@ VPN is the vpn to connect to."
   '"sudo --stdin pkill openvpn"
   "Command to kill openvpn process.")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ethernet connection ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun internet-ethernet-connect ()
+  "Connect to the internet with ethernet."
+  (interactive)
+
+  (let ((process-buffer "internet-ethernet-connect")
+
+	(command (concat internet--ip-link-ethernet-up-command
+			 " && "
+			 internet--dhclient-get-ethernet-ip-address-command)))
+
+    (async-shell-command command process-buffer process-buffer)
+
+    (save-excursion (delete-other-windows))))
+
 (provide 'internet)
 ;;; internet.el ends here
