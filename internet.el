@@ -414,5 +414,25 @@ VPN is the name of the vpn to connect to."
 
     (save-excursion (delete-other-windows))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; option list builder ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun internet--files-without-extension-in-directory
+    (directory file-extension)
+  "Return list of files with a specific file extension and remove the extension.
+
+DIRECTORY is the directory to search.
+FILE-EXTENSION is the file extension to search for and remove from results."
+
+  (let ((files-with-extension
+	 (seq-filter
+	  (lambda (x) (string-suffix-p file-extension x))
+	  (directory-files directory))))
+
+    (mapcar
+     (lambda (x) (string-remove-suffix file-extension x))
+     files-with-extension)))
+
 (provide 'internet)
 ;;; internet.el ends here
