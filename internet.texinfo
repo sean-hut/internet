@@ -23,3 +23,45 @@ This manual is for Internet 0.1.0
 * Index::
 @end menu
 
+@node Overview
+@chapter Overview
+
+@cindex Overview
+
+Internet is an Emacs package that provides a variety of ways to
+connect to the internet.
+
+Before using setup the dependencies and configuration for your desired
+connection methods.
+
+Functionality:
+
+@itemize @bullet
+
+@item
+Methods of connecting to the internet
+
+@itemize @minus
+
+@item
+Ethernet
+
+@item
+Wireless
+
+@item
+Ethernet and openvpn
+
+@item
+Wireless and openvpn
+
+@end itemize
+
+@item
+Disconnect for the above connecting options
+
+@item
+Add and remove wireless network configurations
+
+@end itemize
+
