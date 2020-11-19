@@ -131,5 +131,21 @@ NETWORK-NAME is the network to connect to."
   '"sudo --stdin pkill wpa_supplicant"
   "Command to kill wpa_supplicant process.")
 
+;;;;;;;;;;;;;;;;;;;;;;;
+;; dhclient commands ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+(defconst internet--dhclient-get-wireless-ip-address-command
+  (concat "sudo --stdin dhclient " internet-wireless-interface)
+  "Command to get ip address using dhclient.")
+
+(defconst internet--dhclient-get-ethernet-ip-address-command
+  (concat "sudo --stdin dhclient " internet-ethernet-interface)
+  "Command to get ip address using dhclient.")
+
+(defconst internet--kill-dhclient-command
+  '"sudo --stdin pkill dhclient"
+  "Command to kill dhclient process.")
+
 (provide 'internet)
 ;;; internet.el ends here
