@@ -184,3 +184,176 @@ then you need to have these programs installed:
 @command{sudo}
 
 @end itemize
+
+@node Configuration
+@chapter Configuration
+
+@cindex Configuration
+
+@section Configure for Ethernet connecting
+
+@cindex Configure for Ethernet connecting
+
+@vindex internet-ethernet-interface
+
+Set the @code{internet-ethernet-interface} variable to the ethernet
+interface you will be using.  You can look up your wireless interface
+by running the command @command{ip link show}.  It will start with
+@code{enp} or @code{eth}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-ethernet-interface "enp3s0")
+@end lisp
+
+@section Configure for Ethernet and OpenVPN connecting
+
+@cindex Configure for Ethernet and OpenVPN connecting
+
+@vindex internet-ethernet-interface
+
+Set the @code{internet-ethernet-interface} variable to the ethernet
+interface you will be using.  You can look up your wireless interface
+by running the command @command{ip link show}.  It will start with
+@code{enp} or @code{eth}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-ethernet-interface "enp3s0")
+@end lisp
+
+@vindex internet-openvpn-config-directory
+
+Set the @code{internet-openvpn-config-directory} variable to the
+directory where you have your @code{openvpn} configuration files.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-openvpn-config-directory
+      "/home/user-name/openvpn/configurations/")
+@end lisp
+
+@section Configure for wireless connecting
+
+@cindex Configure for wireless connecting
+
+@vindex internet-rfkill-device-id
+
+Set the @code{internet-rfkill-device-id} variable to the wireless
+device id for the device you will be using.  You can look up your
+wireless device id by running the command @command{rfkill}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-rfkill-device-id "0")
+@end lisp
+
+@vindex internet-wireless-interface
+
+Set the @code{internet-wireless-interface} variable to the wireless
+interface you will be using.  You can look up your wireless interface
+by running the command @command{ip link show}.  It will start with
+@code{wlp} or @code{wlan}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wireless-interface "wlp4s0")
+@end lisp
+
+@vindex internet-wpa-supplicant-config-directory
+
+Set the @code{internet-wpa-supplicant-config-directory} variable to
+the directory where you have your @code{wpa_supplicant} configuration
+files.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wpa-supplicant-config-directory
+      "/etc/wpa_supplicant/")
+@end lisp
+
+@vindex internet-wpa-supplicant-driver
+
+Set the @code{internet-wpa-supplicant-driver} variable to your
+@code{wpa_supplicant} driver.  For information on the driver options
+refer to the @code{wpa_supplicant} manual's available drivers section
+with command @command{man wpa_supplicant}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wpa-supplicant-driver "nl80211")
+@end lisp
+
+@section Configure for wireless and OpenVPN connecting
+
+@cindex Configure for wireless and OpenVPN connecting
+
+@vindex internet-rfkill-device-id
+
+Set the @code{internet-rfkill-device-id} variable to the wireless
+device id for the device you will be using.  You can look up your
+wireless device id by running the command @command{rfkill}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-rfkill-device-id "0")
+@end lisp
+
+@vindex internet-wireless-interface
+
+Set the @code{internet-wireless-interface} variable to the wireless
+interface you will be using.  You can look up your wireless interface
+by running the command @command{ip link show}.  It will start with
+@code{wlp} or @code{wlan}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wireless-interface "wlp4s0")
+@end lisp
+
+@vindex internet-wpa-supplicant-config-directory
+
+Set the @code{internet-wpa-supplicant-config-directory} variable to
+the directory where you have your @code{wpa_supplicant} configuration
+files.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wpa-supplicant-config-directory
+      "/etc/wpa_supplicant/")
+@end lisp
+
+@vindex internet-wpa-supplicant-driver
+
+Set the @code{internet-wpa-supplicant-driver} variable to your
+@code{wpa_supplicant} driver.  For information on the driver options
+refer to the @code{wpa_supplicant} manual's available drivers section
+with command @command{man wpa_supplicant}.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-wpa-supplicant-driver "nl80211")
+@end lisp
+
+@vindex internet-openvpn-config-directory
+
+Set the @code{internet-openvpn-config-directory} variable to the
+directory where you have your @code{openvpn} configuration files.
+
+Here is an example of setting the variable:
+
+@lisp
+(setq internet-openvpn-config-directory
+      "/home/user-name/openvpn/configurations/")
+@end lisp
