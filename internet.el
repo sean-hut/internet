@@ -46,5 +46,8 @@
 
 ;;; Code:
 
+(require 'seq)
+(require 'subr-x)
+
 (provide 'internet)
 ;;; internet.el ends here
