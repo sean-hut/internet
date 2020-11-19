@@ -1,0 +1,427 @@
+This is internet.info, produced by makeinfo version 6.7 from
+internet.texinfo.
+
+
+File: internet.info,  Node: Top,  Next: Overview,  Up: (dir)
+
+Internet
+********
+
+This manual is for Internet 0.1.0
+
+* Menu:
+
+* Overview::
+* Dependencies::
+* Configuration::
+* Usage::
+* License::
+* Index::
+
+
+File: internet.info,  Node: Overview,  Next: Dependencies,  Prev: Top,  Up: Top
+
+1 Overview
+**********
+
+Internet is an Emacs package that provides a variety of ways to connect
+to the internet.
+
+   Before using setup the dependencies and configuration for your
+desired connection methods.
+
+   Functionality:
+
+   * Methods of connecting to the internet
+
+        - Ethernet
+
+        - Wireless
+
+        - Ethernet and openvpn
+
+        - Wireless and openvpn
+
+   * Disconnect for the above connecting options
+
+   * Add and remove wireless network configurations
+
+
+File: internet.info,  Node: Dependencies,  Next: Configuration,  Prev: Overview,  Up: Top
+
+2 Dependencies
+**************
+
+2.1 Ethernet Connection
+=======================
+
+If you are connecting using Ethernet you need to have these programs
+installed:
+
+   * 'ip-link'
+
+   * 'dhclient'
+
+   * 'sudo'
+
+2.2 Ethernet OpneVPN Connection
+===============================
+
+If you are connecting using Ethernet and OpenVPN you need to have these
+programs installed:
+
+   * 'ip-link'
+
+   * 'dhclient'
+
+   * 'openvpn'
+
+   * 'sudo'
+
+2.3 Wireless Connection
+=======================
+
+If you are connecting using wireless you need to have these programs
+installed:
+
+   * 'rfkill'
+
+   * 'ip-link'
+
+   * 'wpa_supplicant'
+
+   * 'dhclient'
+
+   * 'sudo'
+
+2.4 Wireless Openvpn Connection
+===============================
+
+If you are connecting using wireless and OpenVPN you need to have these
+programs installed:
+
+   * 'rfkill'
+
+   * 'ip-link'
+
+   * 'wpa_supplicant'
+
+   * 'dhclient'
+
+   * 'openvpn'
+
+   * 'sudo'
+
+2.5 Creating Wireless Configurations
+====================================
+
+If you are going to use this package to create wireless configurations
+then you need to have these programs installed:
+
+   * 'wpa_passphrase'
+
+   * 'sudo'
+
+
+File: internet.info,  Node: Configuration,  Next: Usage,  Prev: Dependencies,  Up: Top
+
+3 Configuration
+***************
+
+3.1 Configure for Ethernet connecting
+=====================================
+
+Set the 'internet-ethernet-interface' variable to the ethernet interface
+you will be using.  You can look up your wireless interface by running
+the command 'ip link show'.  It will start with 'enp' or 'eth'.
+
+   Here is an example of setting the variable:
+
+     (setq internet-ethernet-interface "enp3s0")
+
+3.2 Configure for Ethernet and OpenVPN connecting
+=================================================
+
+Set the 'internet-ethernet-interface' variable to the ethernet interface
+you will be using.  You can look up your wireless interface by running
+the command 'ip link show'.  It will start with 'enp' or 'eth'.
+
+   Here is an example of setting the variable:
+
+     (setq internet-ethernet-interface "enp3s0")
+
+   Set the 'internet-openvpn-config-directory' variable to the directory
+where you have your 'openvpn' configuration files.
+
+   Here is an example of setting the variable:
+
+     (setq internet-openvpn-config-directory
+           "/home/user-name/openvpn/configurations/")
+
+3.3 Configure for wireless connecting
+=====================================
+
+Set the 'internet-rfkill-device-id' variable to the wireless device id
+for the device you will be using.  You can look up your wireless device
+id by running the command 'rfkill'.
+
+   Here is an example of setting the variable:
+
+     (setq internet-rfkill-device-id "0")
+
+   Set the 'internet-wireless-interface' variable to the wireless
+interface you will be using.  You can look up your wireless interface by
+running the command 'ip link show'.  It will start with 'wlp' or 'wlan'.
+
+   Here is an example of setting the variable:
+
+     (setq internet-wireless-interface "wlp4s0")
+
+   Set the 'internet-wpa-supplicant-config-directory' variable to the
+directory where you have your 'wpa_supplicant' configuration files.
+
+   Here is an example of setting the variable:
+
+     (setq internet-wpa-supplicant-config-directory
+           "/etc/wpa_supplicant/")
+
+   Set the 'internet-wpa-supplicant-driver' variable to your
+'wpa_supplicant' driver.  For information on the driver options refer to
+the 'wpa_supplicant' manual's available drivers section with command
+'man wpa_supplicant'.
+
+   Here is an example of setting the variable:
+
+     (setq internet-wpa-supplicant-driver "nl80211")
+
+3.4 Configure for wireless and OpenVPN connecting
+=================================================
+
+Set the 'internet-rfkill-device-id' variable to the wireless device id
+for the device you will be using.  You can look up your wireless device
+id by running the command 'rfkill'.
+
+   Here is an example of setting the variable:
+
+     (setq internet-rfkill-device-id "0")
+
+   Set the 'internet-wireless-interface' variable to the wireless
+interface you will be using.  You can look up your wireless interface by
+running the command 'ip link show'.  It will start with 'wlp' or 'wlan'.
+
+   Here is an example of setting the variable:
+
+     (setq internet-wireless-interface "wlp4s0")
+
+   Set the 'internet-wpa-supplicant-config-directory' variable to the
+directory where you have your 'wpa_supplicant' configuration files.
+
+   Here is an example of setting the variable:
+
+     (setq internet-wpa-supplicant-config-directory
+           "/etc/wpa_supplicant/")
+
+   Set the 'internet-wpa-supplicant-driver' variable to your
+'wpa_supplicant' driver.  For information on the driver options refer to
+the 'wpa_supplicant' manual's available drivers section with command
+'man wpa_supplicant'.
+
+   Here is an example of setting the variable:
+
+     (setq internet-wpa-supplicant-driver "nl80211")
+
+   Set the 'internet-openvpn-config-directory' variable to the directory
+where you have your 'openvpn' configuration files.
+
+   Here is an example of setting the variable:
+
+     (setq internet-openvpn-config-directory
+           "/home/user-name/openvpn/configurations/")
+
+
+File: internet.info,  Node: Usage,  Next: License,  Prev: Configuration,  Up: Top
+
+4 Usage
+*******
+
+You must do the required setup before this package will work properly.
+This setup includes installing the required dependencies and making the
+required configurations.
+
+   *Note Dependencies::
+
+   *Note Configuration::
+
+4.1 Ethernet Connection
+=======================
+
+'M-x internet-ethernet-connect' will make an Ethernet connection.
+
+   'M-x internet-ethernet-disconnect' will disconnect the Ethernet
+connection.
+
+4.2 Ethernet and OpenVPN Connection
+===================================
+
+'M-x internet-ethernet-openvpn-connect' will make an Ethernet and
+OpenVPN connection.  You will be prompted for the OpenVPN configuration
+file to use when connecting.
+
+   'M-x internet-ethernet-openvpn-disconnect' This will disconnect the
+Ethernet and OpenVPN connection.
+
+4.3 Wireless Network Configuration
+==================================
+
+'M-x internet-add-wireless-configuration' will add a 'wpa_supplicant'
+configuration file for a wireless network.  You will be prompted for a
+network name, network SSID and network password.
+
+   'M-x internet-remove-wireless-configuration' will remove a
+'wpa_supplicant' configuration file.  You will be prompted for which
+configuration file to remove.
+
+4.4 Wireless Connection
+=======================
+
+'M-x internet-wireless-connect' will make a wireless connection.  You
+will be prompted for the 'wpa_supplicant' configuration file to use when
+connecting.
+
+   'M-x internet-wireless-disconnect' will disconnect the wireless
+connection.
+
+4.5 Wireless and OpenVPN Connection
+===================================
+
+'M-x internet-wireless-openvpn-connect' will make a wireless and OpenVPN
+connection.  You will be prompted for the 'wpa_supplicant' configuration
+file and the 'openvpn' configuration file to use when connecting.
+
+   'M-x internet-wireless-openvpn-disconnect' will disconnect the
+wireless and OpenVPN connection.
+
+
+File: internet.info,  Node: License,  Next: Index,  Prev: Usage,  Up: Top
+
+Appendix A License
+******************
+
+Copyright (C) 2020 Sean Hutchings
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+File: internet.info,  Node: Index,  Prev: License,  Up: Top
+
+Index
+*****
+
+Concept Index
+=============
+
+ [index ]
+* Menu:
+
+* Configuration:                         Configuration.        (line  5)
+* Configure for Ethernet and OpenVPN connecting: Configuration.
+                                                               (line 20)
+* Configure for Ethernet connecting:     Configuration.        (line  9)
+* Configure for wireless and OpenVPN connecting: Configuration.
+                                                               (line 75)
+* Configure for wireless connecting:     Configuration.        (line 39)
+* Creating Wireless Configurations:      Dependencies.         (line 69)
+* Dependencies:                          Dependencies.         (line  5)
+* Ethernet and OpenVPN connecting:       Usage.                (line 25)
+* Ethernet connecting:                   Usage.                (line 17)
+* Ethernet Connection:                   Dependencies.         (line  9)
+* Ethernet OpenVPN Connection:           Dependencies.         (line 21)
+* License:                               License.              (line  6)
+* Overview:                              Overview.             (line  6)
+* Usage:                                 Usage.                (line  6)
+* Wireless and OpenVPN Connection:       Usage.                (line 56)
+* Wireless Connection:                   Dependencies.         (line 35)
+* Wireless Connection <1>:               Usage.                (line 46)
+* Wireless Network Configuration:        Usage.                (line 35)
+* Wireless OpenVPN Connection:           Dependencies.         (line 51)
+
+Keystroke Index
+===============
+
+ [index ]
+* Menu:
+
+* internet-add-wireless-configuration:   Usage.                (line 35)
+* internet-ethernet-connect:             Usage.                (line 17)
+* internet-ethernet-disconnect:          Usage.                (line 19)
+* internet-ethernet-openvpn-connect:     Usage.                (line 25)
+* internet-ethernet-openvpn-disconnect:  Usage.                (line 29)
+* internet-remove-wireless-configuration: Usage.               (line 39)
+* internet-wireless-connect:             Usage.                (line 46)
+* internet-wireless-disconnect:          Usage.                (line 50)
+* internet-wireless-openvpn-connect:     Usage.                (line 56)
+* internet-wireless-openvpn-disconnect:  Usage.                (line 60)
+
+Function Index
+==============
+
+ [index ]
+* Menu:
+
+* internet-add-wireless-configuration:   Usage.                (line 35)
+* internet-ethernet-connect:             Usage.                (line 17)
+* internet-ethernet-disconnect:          Usage.                (line 19)
+* internet-ethernet-openvpn-connect:     Usage.                (line 25)
+* internet-ethernet-openvpn-disconnect:  Usage.                (line 29)
+* internet-remove-wireless-configuration: Usage.               (line 39)
+* internet-wireless-connect:             Usage.                (line 46)
+* internet-wireless-disconnect:          Usage.                (line 50)
+* internet-wireless-openvpn-connect:     Usage.                (line 56)
+* internet-wireless-openvpn-disconnect:  Usage.                (line 60)
+
+Variable Index
+==============
+
+ [index ]
+* Menu:
+
+* internet-ethernet-interface:           Configuration.       (line   9)
+* internet-ethernet-interface <1>:       Configuration.       (line  20)
+* internet-openvpn-config-directory:     Configuration.       (line  28)
+* internet-openvpn-config-directory <1>: Configuration.       (line 108)
+* internet-rfkill-device-id:             Configuration.       (line  39)
+* internet-rfkill-device-id <1>:         Configuration.       (line  75)
+* internet-wireless-interface:           Configuration.       (line  47)
+* internet-wireless-interface <1>:       Configuration.       (line  83)
+* internet-wpa-supplicant-config-directory: Configuration.    (line  55)
+* internet-wpa-supplicant-config-directory <1>: Configuration.
+                                                              (line  91)
+* internet-wpa-supplicant-driver:        Configuration.       (line  63)
+* internet-wpa-supplicant-driver <1>:    Configuration.       (line  99)
+
+
+
+Tag Table:
+Node: Top80
+Node: Overview288
+Node: Dependencies849
+Node: Configuration2072
+Node: Usage6081
+Node: License8040
+Node: Index8799
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Usage (Internet)</title>
+
+<meta name="description" content="Usage (Internet)">
+<meta name="keywords" content="Usage (Internet)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html" rel="start" title="Top">
+<link href="Index.html" rel="index" title="Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="License.html" rel="next" title="License">
+<link href="Configuration.html" rel="prev" title="Configuration">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<span id="Usage"></span><div class="header">
+<p>
+Next: <a href="License.html" accesskey="n" rel="next">License</a>, Previous: <a href="Configuration.html" accesskey="p" rel="prev">Configuration</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Usage-1"></span><h2 class="chapter">4 Usage</h2>
+
+<span id="index-Usage"></span>
+
+<p>You must do the required setup before this package will work properly.
+This setup includes installing the required dependencies and making
+the required configurations.
+</p>
+<p>See <a href="Dependencies.html">Dependencies</a>
+</p>
+<p>See <a href="Configuration.html">Configuration</a>
+</p>
+<span id="Ethernet-Connection-1"></span><h3 class="section">4.1 Ethernet Connection</h3>
+
+<span id="index-Ethernet-connecting"></span>
+
+<span id="index-internet_002dethernet_002dconnect"></span>
+
+<span id="index-internet_002dethernet_002dconnect-1"></span>
+
+<p><kbd>M-x internet-ethernet-connect</kbd> will make an Ethernet connection.
+</p>
+<span id="index-internet_002dethernet_002ddisconnect"></span>
+
+<span id="index-internet_002dethernet_002ddisconnect-1"></span>
+
+<p><kbd>M-x internet-ethernet-disconnect</kbd> will disconnect the Ethernet
+connection.
+</p>
+<span id="Ethernet-and-OpenVPN-Connection"></span><h3 class="section">4.2 Ethernet and OpenVPN Connection</h3>
+
+<span id="index-Ethernet-and-OpenVPN-connecting"></span>
+
+<span id="index-internet_002dethernet_002dopenvpn_002dconnect"></span>
+
+<span id="index-internet_002dethernet_002dopenvpn_002dconnect-1"></span>
+
+<p><kbd>M-x internet-ethernet-openvpn-connect</kbd> will make an Ethernet and
+OpenVPN connection.  You will be prompted for the OpenVPN
+configuration file to use when connecting.
+</p>
+<span id="index-internet_002dethernet_002dopenvpn_002ddisconnect"></span>
+
+<span id="index-internet_002dethernet_002dopenvpn_002ddisconnect-1"></span>
+
+<p><kbd>M-x internet-ethernet-openvpn-disconnect</kbd> This will disconnect
+the Ethernet and OpenVPN connection.
+</p>
+<span id="Wireless-Network-Configuration"></span><h3 class="section">4.3 Wireless Network Configuration</h3>
+
+<span id="index-Wireless-Network-Configuration"></span>
+
+<span id="index-internet_002dadd_002dwireless_002dconfiguration"></span>
+
+<span id="index-internet_002dadd_002dwireless_002dconfiguration-1"></span>
+
+<p><kbd>M-x internet-add-wireless-configuration</kbd> will add a
+<code>wpa_supplicant</code> configuration file for a wireless network.  You
+will be prompted for a network name, network SSID and network
+password.
+</p>
+<span id="index-internet_002dremove_002dwireless_002dconfiguration"></span>
+
+<span id="index-internet_002dremove_002dwireless_002dconfiguration-1"></span>
+
+<p><kbd>M-x internet-remove-wireless-configuration</kbd> will remove a
+<code>wpa_supplicant</code> configuration file.  You will be prompted for
+which configuration file to remove.
+</p>
+<span id="Wireless-Connection-1"></span><h3 class="section">4.4 Wireless Connection</h3>
+
+<span id="index-Wireless-Connection-1"></span>
+
+<span id="index-internet_002dwireless_002dconnect"></span>
+
+<span id="index-internet_002dwireless_002dconnect-1"></span>
+
+<p><kbd>M-x internet-wireless-connect</kbd> will make a wireless connection.
+You will be prompted for the <code>wpa_supplicant</code> configuration file
+to use when connecting.
+</p>
+<span id="index-internet_002dwireless_002ddisconnect"></span>
+
+<span id="index-internet_002dwireless_002ddisconnect-1"></span>
+
+<p><kbd>M-x internet-wireless-disconnect</kbd> will disconnect the wireless
+connection.
+</p>
+<span id="Wireless-and-OpenVPN-Connection"></span><h3 class="section">4.5 Wireless and OpenVPN Connection</h3>
+
+<span id="index-Wireless-and-OpenVPN-Connection"></span>
+
+<span id="index-internet_002dwireless_002dopenvpn_002dconnect"></span>
+
+<span id="index-internet_002dwireless_002dopenvpn_002dconnect-1"></span>
+
+<p><kbd>M-x internet-wireless-openvpn-connect</kbd> will make a wireless and
+OpenVPN connection.  You will be prompted for the
+<code>wpa_supplicant</code> configuration file and the <code>openvpn</code>
+configuration file to use when connecting.
+</p>
+<span id="index-internet_002dwireless_002dopenvpn_002ddisconnect"></span>
+
+<span id="index-internet_002dwireless_002dopenvpn_002ddisconnect-1"></span>
+
+<p><kbd>M-x internet-wireless-openvpn-disconnect</kbd> will disconnect the
+wireless and OpenVPN connection.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="License.html" accesskey="n" rel="next">License</a>, Previous: <a href="Configuration.html" accesskey="p" rel="prev">Configuration</a>, Up: <a href="index.html" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
