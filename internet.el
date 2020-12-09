@@ -61,7 +61,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar internet-wpa-supplicant-config-directory nil
-  "The directory where wpa_supplicant configuration files are located.")
+  "Directory where wpa_supplicant configuration files are located.")
 
 (defvar internet-rfkill-device-id nil
   "Device ID for rfkill.")
@@ -96,19 +96,27 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 (defconst internet--ip-link-wireless-up-command
-  (concat "sudo --stdin ip link set " internet-wireless-interface " up")
+  (concat "sudo --stdin ip link set "
+	  internet-wireless-interface
+	  " up")
   "Command to set wireless interface to up using ip link.")
 
 (defconst internet--ip-link-wireless-down-command
-  (concat "sudo --stdin ip link set " internet-wireless-interface " down")
+  (concat "sudo --stdin ip link set "
+	  internet-wireless-interface
+	  " down")
   "Command to set wireless interface to down using ip link.")
 
 (defconst internet--ip-link-ethernet-up-command
-  (concat "sudo --stdin ip link set " internet-ethernet-interface " up")
+  (concat "sudo --stdin ip link set "
+	  internet-ethernet-interface
+	  " up")
   "Command to set wireless interface to up using ip link.")
 
 (defconst internet--ip-link-ethernet-down-command
-  (concat "sudo --stdin ip link set " internet-ethernet-interface " down")
+  (concat "sudo --stdin ip link set "
+	  internet-ethernet-interface
+	  " down")
   "Command to set wireless interface to down using ip link.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -116,7 +124,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun internet--wpa-supplicant-connect-command (network-name)
-  "Return a command to connect to a wireless network using wpa_supplicant.
+  "Return wpa_supplicant connection command.
+
+The command is used to connect to a wireless network.
 
 NETWORK-NAME is the network to connect to."
 
@@ -218,7 +228,7 @@ VPN is the name of the vpn to connect with."
 			 internet--dhclient-get-ethernet-ip-address-command
 			 " && "
 			 (internet--openvpn-connect-command vpn))))
-    
+
     (async-shell-command command process-buffer process-buffer)))
 
 (defun internet-ethernet-openvpn-disconnect ()
@@ -246,7 +256,8 @@ VPN is the name of the vpn to connect with."
   "Add a wpa_supplicant configuration file.
 
 NETWORK-NAME is the name that will be given to the wpa_supplicant
-configuration file with a .conf suffix added.  It should be alpanumeric.
+configuration file with a .conf suffix added.  It should be
+alpanumeric.
 NETWORK-SSID is the ssid of the network.
 NETWORK-PASSWORD is the password of the network."
   (interactive
@@ -290,7 +301,8 @@ STRING is the status of PROCESS."
 (defun internet-remove-wireless-configuration (configuration-file)
   "Remove a wpa_supplicant configuration file.
 
-CONFIGURATION-FILE is the wpa_supplicant configuration file to remove."
+CONFIGURATION-FILE is the wpa_supplicant configuration file to
+remove."
   (interactive
 
    (list (completing-read
@@ -316,8 +328,8 @@ CONFIGURATION-FILE is the wpa_supplicant configuration file to remove."
 (defun internet-wireless-connect (network-name)
   "Connect to a wireless network.
 
-NETWORK-NAME is the name of the network wpa_supplicant config file without the
-suffix."
+NETWORK-NAME is the name of the network wpa_supplicant config file
+without the suffix."
   (interactive
 
    (list (completing-read "Wifi network to connect to: "
@@ -420,10 +432,11 @@ VPN is the name of the vpn to connect to."
 
 (defun internet--files-without-extension-in-directory
     (directory file-extension)
-  "Return list of files with a specific file extension and remove the extension.
+  "Return list of files with a specific file extension removed.
 
 DIRECTORY is the directory to search.
-FILE-EXTENSION is the file extension to search for and remove from results."
+FILE-EXTENSION is the file extension to search for and remove from
+results."
 
   (let ((files-with-extension
 	 (seq-filter
