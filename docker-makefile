@@ -1,0 +1,100 @@
+# Use > instead of a tab as recipe prefixes.
+.RECIPEPREFIX = >
+
+####################
+# Internal variables
+####################
+
+# Package Directories
+elisp_lint_directory = "/root/.emacs.d/elpa/elisp-lint-20200324.2217/"
+package_lint_directory = "/root/.emacs.d/elpa/package-lint-20200906.512/"
+package_dash_directory = "/root/.emacs.d/elpa/dash-20200803.1520/"
+
+# Files
+name = internet
+main = $(name).el
+compiled_elisp = e$(main)c flycheck_$(main)c
+autoloaded_elisp = $(name)-autoloads.el $(name)-autoloads.el~
+texinfo = $(name).texinfo
+info_file = $(name).info
+html_directory = docs/
+
+# Arguments
+emacs_batch_quick = --batch --quick
+emacs_batch = --batch
+rm_options = -r -f
+
+#######
+# Rules
+#######
+
+all : lint-elisp lint-git-whitespace clean markdown documentation
+
+lint-elisp : lint-byte-compile lint-checkdoc lint-elisp-lint
+
+.PHONY: lint-byte-compile
+lint-byte-compile :
+> emacs $(emacs_batch_quick) \
+> --eval='(setq byte-compile-warnings t)' \
+> --eval='(setq byte-compile-error-on-warn t)' \
+> --eval='(byte-compile-file "$(main)")'
+
+.PHONY: lint-checkdoc
+lint-checkdoc :
+> emacs $(emacs_batch_quick) --eval='(checkdoc-file "$(main)")'
+
+.PHONY: lint-elisp-lint
+lint-elisp-lint :
+> emacs $(emacs_batch) \
+> --directory=$(elisp_lint_directory) \
+> --directory=$(package_lint_directory) \
+> --directory=$(package_dash_directory) \
+> --load="elisp-lint.el" \
+> --load="package-lint.el" \
+> --eval='(setq fill-column 70)' \
+> --eval='(setq indent-tabs-mode nil)' \
+> --funcall=elisp-lint-files-batch \
+> $(main)
+
+lint-git-whitespace :
+> git diff --check
+
+.PHONY: markdown
+markdown:
+> markdownlint *.md
+> markdownlint CONTRIBUTING/CONTRIBUTING.md
+
+documentation : documentation-info documentation-html
+
+documentation-info : $(texinfo)
+> makeinfo --output=$(info_file) $(texinfo)
+
+documentation-html : $(texinfo)
+> rm $(rm_options) $(html_directory)
+> mkdir $(html_directory)
+> makeinfo --html --output=$(html_directory) $(texinfo)
+
+.PHONY: clean
+clean : clean-elisp clean-documentation
+
+.PHONY: clean-elisp
+clean : clean-compiled-elisp clean-autoloaded-elisp
+
+.PHONY: clean-compiled-elisp
+clean-compiled-elisp :
+> rm $(rm_options) $(compiled_elisp)
+
+.PHONY: clean-autoloaded-elisp
+clean-autoloaded-elisp :
+> rm $(rm_options) $(autoloaded_elisp)
+
+.PHONY: clean-documentation
+clean : clean-info clean-html
+
+.PHONY: clean-info
+clean-info :
+> rm $(rm_options) $(info_file)
+
+.PHONY: clean-html
+clean-html :
+> rm $(rm_options) $(html_directory)*
