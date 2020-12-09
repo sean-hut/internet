@@ -85,11 +85,13 @@
 ;;;;;;;;;;;;;;;;;;;;;
 
 (defvar internet--rfkill-unblock-command
-  (concat "sudo --stdin rfkill unblock " internet-rfkill-device-id)
+  (concat "sudo --stdin rfkill unblock "
+	  (shell-quote-argument internet-rfkill-device-id))
   "Command to soft unblock wireless device using rfkill.")
 
 (defvar internet--rfkill-block-command
-  (concat "sudo --stdin rfkill block " internet-rfkill-device-id)
+  (concat "sudo --stdin rfkill block "
+	  (shell-quote-argument internet-rfkill-device-id))
   "Command to soft block wireless device using rfkill.")
 
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -98,25 +100,25 @@
 
 (defvar internet--ip-link-wireless-up-command
   (concat "sudo --stdin ip link set "
-	  internet-wireless-interface
+	  (shell-quote-argument internet-wireless-interface)
 	  " up")
   "Command to set wireless interface to up using ip link.")
 
 (defvar internet--ip-link-wireless-down-command
   (concat "sudo --stdin ip link set "
-	  internet-wireless-interface
+	  (shell-quote-argument internet-wireless-interface)
 	  " down")
   "Command to set wireless interface to down using ip link.")
 
 (defvar internet--ip-link-ethernet-up-command
   (concat "sudo --stdin ip link set "
-	  internet-ethernet-interface
+	  (shell-quote-argument internet-ethernet-interface)
 	  " up")
   "Command to set wireless interface to up using ip link.")
 
 (defvar internet--ip-link-ethernet-down-command
   (concat "sudo --stdin ip link set "
-	  internet-ethernet-interface
+	  (shell-quote-argument internet-ethernet-interface)
 	  " down")
   "Command to set wireless interface to down using ip link.")
 
@@ -132,11 +134,15 @@ The command is used to connect to a wireless network.
 NETWORK-NAME is the network to connect to."
 
   (concat "sudo --stdin wpa_supplicant -B"
-	  " -D" internet-wpa-supplicant-driver
-	  " -c" (concat internet-wpa-supplicant-config-directory
-			network-name
-			".conf")
-	  " -i" internet-wireless-interface))
+	  " -D"
+	  (shell-quote-argument internet-wpa-supplicant-driver)
+	  " -c"
+	  (concat
+	   (shell-quote-argument internet-wpa-supplicant-config-directory)
+	   (shell-quote-argument network-name)
+	   ".conf")
+	  " -i"
+	  (shell-quote-argument internet-wireless-interface)))
 
 (defconst internet--kill-wpa-supplicant-command
   '"sudo --stdin pkill wpa_supplicant"
@@ -147,11 +153,13 @@ NETWORK-NAME is the network to connect to."
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar internet--dhclient-get-wireless-ip-address-command
-  (concat "sudo --stdin dhclient " internet-wireless-interface)
+  (concat "sudo --stdin dhclient "
+	  (shell-quote-argument internet-wireless-interface))
   "Command to get ip address using dhclient.")
 
 (defvar internet--dhclient-get-ethernet-ip-address-command
-  (concat "sudo --stdin dhclient " internet-ethernet-interface)
+  (concat "sudo --stdin dhclient "
+	  (shell-quote-argument internet-ethernet-interface))
   "Command to get ip address using dhclient.")
 
 (defconst internet--kill-dhclient-command
@@ -168,7 +176,10 @@ NETWORK-NAME is the network to connect to."
 VPN is the vpn to connect to."
 
   (concat "sudo --stdin openvpn --config "
-	  (concat internet-openvpn-config-directory vpn ".ovpn")))
+	  (concat
+	   (shell-quote-argument internet-openvpn-config-directory)
+	   (shell-quote-argument vpn)
+	   ".ovpn")))
 
 (defconst internet--kill-openvpn-command
   '"sudo --stdin pkill openvpn"
@@ -228,7 +239,8 @@ VPN is the name of the vpn to connect with."
 			 " && "
 			 internet--dhclient-get-ethernet-ip-address-command
 			 " && "
-			 (internet--openvpn-connect-command vpn))))
+			 (internet--openvpn-connect-command
+			  (shell-quote-argument vpn)))))
 
     (async-shell-command command process-buffer process-buffer)))
 
@@ -267,18 +279,20 @@ NETWORK-PASSWORD is the password of the network."
 	 (read-string "Wifi network SSID: ")
 	 (read-passwd "Wifi network password: " t)))
 
-  (let ((command (concat "sudo --stdin "
-			 "sh -c '"
-			 "wpa_passphrase "
-			 network-ssid
-			 " "
-			 network-password
-			 " > "
-			 (concat
-			  internet-wpa-supplicant-config-directory
-			  network-name
-			  ".conf")
-			 "'"))
+  (let ((command (concat
+		  "sudo --stdin "
+		  "sh -c '"
+		  "wpa_passphrase "
+		  (shell-quote-argument network-ssid)
+		  " "
+		  (shell-quote-argument network-password)
+		  " > "
+		  (concat
+		   (shell-quote-argument internet-wpa-supplicant-config-directory)
+		   (shell-quote-argument network-name)
+		   ".conf")
+		  "'"))
+
 	(process-buffer "internet-add-wireless-configuration"))
 
     (async-shell-command command process-buffer process-buffer)
@@ -308,13 +322,16 @@ remove."
 
    (list (completing-read
 	  "wpa_supplicant configuration file to remove: "
-	  (directory-files internet-wpa-supplicant-config-directory)
+	  (directory-files
+	   (shell-quote-argument internet-wpa-supplicant-config-directory))
 	  nil
 	  t)))
 
-  (let ((command (concat "sudo --stdin rm "
-			 internet-wpa-supplicant-config-directory
-			 configuration-file))
+  (let ((command
+	 (concat
+	  "sudo --stdin rm "
+	  (shell-quote-argument internet-wpa-supplicant-config-directory)
+	  (shell-quote-argument configuration-file)))
 
 	(process-buffer "internet-remove-wireless-configuration"))
 
@@ -345,7 +362,8 @@ without the suffix."
 			 " && "
 			 internet--ip-link-wireless-up-command
 			 " && "
-			 (internet--wpa-supplicant-connect-command network-name)
+			 (internet--wpa-supplicant-connect-command
+			  (shell-quote-argument network-name))
 			 " && "
 			 internet--dhclient-get-wireless-ip-address-command)))
 
@@ -399,7 +417,8 @@ VPN is the name of the vpn to connect to."
 			  " && "
 			  internet--ip-link-wireless-up-command
 			  " && "
-			  (internet--wpa-supplicant-connect-command wireless-network)
+			  (internet--wpa-supplicant-connect-command
+			   (shell-quote-argument wireless-network))
 			  " && "
 			  internet--dhclient-get-wireless-ip-address-command
 			  " && "
