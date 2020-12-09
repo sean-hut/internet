@@ -83,11 +83,11 @@
 ;; rfkill commands ;;
 ;;;;;;;;;;;;;;;;;;;;;
 
-(defconst internet--rfkill-unblock-command
+(defvar internet--rfkill-unblock-command
   (concat "sudo --stdin rfkill unblock " internet-rfkill-device-id)
   "Command to soft unblock wireless device using rfkill.")
 
-(defconst internet--rfkill-block-command
+(defvar internet--rfkill-block-command
   (concat "sudo --stdin rfkill block " internet-rfkill-device-id)
   "Command to soft block wireless device using rfkill.")
 
@@ -95,25 +95,25 @@
 ;; ip link commands ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-(defconst internet--ip-link-wireless-up-command
+(defvar internet--ip-link-wireless-up-command
   (concat "sudo --stdin ip link set "
 	  internet-wireless-interface
 	  " up")
   "Command to set wireless interface to up using ip link.")
 
-(defconst internet--ip-link-wireless-down-command
+(defvar internet--ip-link-wireless-down-command
   (concat "sudo --stdin ip link set "
 	  internet-wireless-interface
 	  " down")
   "Command to set wireless interface to down using ip link.")
 
-(defconst internet--ip-link-ethernet-up-command
+(defvar internet--ip-link-ethernet-up-command
   (concat "sudo --stdin ip link set "
 	  internet-ethernet-interface
 	  " up")
   "Command to set wireless interface to up using ip link.")
 
-(defconst internet--ip-link-ethernet-down-command
+(defvar internet--ip-link-ethernet-down-command
   (concat "sudo --stdin ip link set "
 	  internet-ethernet-interface
 	  " down")
@@ -145,11 +145,11 @@ NETWORK-NAME is the network to connect to."
 ;; dhclient commands ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(defconst internet--dhclient-get-wireless-ip-address-command
+(defvar internet--dhclient-get-wireless-ip-address-command
   (concat "sudo --stdin dhclient " internet-wireless-interface)
   "Command to get ip address using dhclient.")
 
-(defconst internet--dhclient-get-ethernet-ip-address-command
+(defvar internet--dhclient-get-ethernet-ip-address-command
   (concat "sudo --stdin dhclient " internet-ethernet-interface)
   "Command to get ip address using dhclient.")
 
