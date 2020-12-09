@@ -289,10 +289,10 @@ NETWORK-PASSWORD is the password of the network."
      (get-process (get-buffer-process process-buffer))
      'internet--sentinel-add-wireless-configuration)))
 
-(defun internet--sentinel-add-wireless-configuration (process string)
+(defun internet--sentinel-add-wireless-configuration (_process string)
   "Outputs the name and status of a process.
 
-PROCESS is the process to report on.
+_PROCESS is the process to report on.
 STRING is the status of PROCESS."
 
   (message "%s %s"
