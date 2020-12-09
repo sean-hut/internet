@@ -26,6 +26,7 @@ This project uses the [ISO 8601 date format][iso] of (YYYY-MM-DD).
 ## [0.1.0] - 2020-11-19
 
 ### Added
+
 - Readme
 - Changelog
 - BSD zero clause license (SPDX: 0BSD)
