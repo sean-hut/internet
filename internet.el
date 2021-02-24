@@ -84,43 +84,43 @@
 ;; rfkill commands ;;
 ;;;;;;;;;;;;;;;;;;;;;
 
-(defvar internet--rfkill-unblock-command
+(defun internet--rfkill-unblock-command ()
+  "Command to soft unblock wireless device using rfkill."
   (concat "sudo --stdin rfkill unblock "
-	  (shell-quote-argument internet-rfkill-device-id))
-  "Command to soft unblock wireless device using rfkill.")
+	  (shell-quote-argument internet-rfkill-device-id)))
 
-(defvar internet--rfkill-block-command
+(defun internet--rfkill-block-command ()
+  "Command to soft block wireless device using rfkill."
   (concat "sudo --stdin rfkill block "
-	  (shell-quote-argument internet-rfkill-device-id))
-  "Command to soft block wireless device using rfkill.")
+	  (shell-quote-argument internet-rfkill-device-id)))
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; ip link commands ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar internet--ip-link-wireless-up-command
+(defun internet--ip-link-wireless-up-command ()
+  "Command to set wireless interface to up using ip link."
   (concat "sudo --stdin ip link set "
 	  (shell-quote-argument internet-wireless-interface)
-	  " up")
-  "Command to set wireless interface to up using ip link.")
+	  " up"))
 
-(defvar internet--ip-link-wireless-down-command
+(defun internet--ip-link-wireless-down-command ()
+  "Command to set wireless interface to down using ip link."
   (concat "sudo --stdin ip link set "
 	  (shell-quote-argument internet-wireless-interface)
-	  " down")
-  "Command to set wireless interface to down using ip link.")
+	  " down"))
 
-(defvar internet--ip-link-ethernet-up-command
+(defun internet--ip-link-ethernet-up-command ()
+  "Command to set wireless interface to up using ip link."
   (concat "sudo --stdin ip link set "
 	  (shell-quote-argument internet-ethernet-interface)
-	  " up")
-  "Command to set wireless interface to up using ip link.")
+	  " up"))
 
-(defvar internet--ip-link-ethernet-down-command
+(defun internet--ip-link-ethernet-down-command ()
+  "Command to set wireless interface to down using ip link."
   (concat "sudo --stdin ip link set "
 	  (shell-quote-argument internet-ethernet-interface)
-	  " down")
-  "Command to set wireless interface to down using ip link.")
+	  " down"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; wpa_supplicant commands ;;
@@ -152,15 +152,15 @@ NETWORK-NAME is the network to connect to."
 ;; dhclient commands ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar internet--dhclient-get-wireless-ip-address-command
+(defun internet--dhclient-get-wireless-ip-address-command ()
+  "Command to get ip address using dhclient."
   (concat "sudo --stdin dhclient "
-	  (shell-quote-argument internet-wireless-interface))
-  "Command to get ip address using dhclient.")
+	  (shell-quote-argument internet-wireless-interface)))
 
-(defvar internet--dhclient-get-ethernet-ip-address-command
+(defun internet--dhclient-get-ethernet-ip-address-command ()
+  "Command to get ip address using dhclient."
   (concat "sudo --stdin dhclient "
-	  (shell-quote-argument internet-ethernet-interface))
-  "Command to get ip address using dhclient.")
+	  (shell-quote-argument internet-ethernet-interface)))
 
 (defconst internet--kill-dhclient-command
   '"sudo --stdin pkill dhclient"
@@ -195,9 +195,9 @@ VPN is the vpn to connect to."
 
   (let ((process-buffer "internet-ethernet-connect")
 
-	(command (concat internet--ip-link-ethernet-up-command
+	(command (concat (internet--ip-link-ethernet-up-command)
 			 " && "
-			 internet--dhclient-get-ethernet-ip-address-command)))
+			 (internet--dhclient-get-ethernet-ip-address-command))))
 
     (async-shell-command command process-buffer process-buffer)
 
@@ -211,7 +211,7 @@ VPN is the vpn to connect to."
 
 	(command (concat internet--kill-dhclient-command
 			 " && "
-			 internet--ip-link-ethernet-down-command)))
+			 (internet--ip-link-ethernet-down-command))))
 
     (async-shell-command command process-buffer process-buffer)
 
@@ -235,9 +235,9 @@ VPN is the name of the vpn to connect with."
 
   (let ((process-buffer "internet-ethernet-openvpn-connect")
 
-	(command (concat internet--ip-link-ethernet-up-command
+	(command (concat (internet--ip-link-ethernet-up-command)
 			 " && "
-			 internet--dhclient-get-ethernet-ip-address-command
+			 (internet--dhclient-get-ethernet-ip-address-command)
 			 " && "
 			 (internet--openvpn-connect-command
 			  (shell-quote-argument vpn)))))
@@ -254,7 +254,7 @@ VPN is the name of the vpn to connect with."
 			 " && "
 			 internet--kill-dhclient-command
 			 " && "
-			 internet--ip-link-ethernet-down-command)))
+			 (internet--ip-link-ethernet-down-command))))
 
     (async-shell-command command process-buffer process-buffer)
 
@@ -358,14 +358,14 @@ without the suffix."
 
   (let ((process-buffer "internet-wireless-connect")
 
-	(command (concat internet--rfkill-unblock-command
+	(command (concat (internet--rfkill-unblock-command)
 			 " && "
-			 internet--ip-link-wireless-up-command
+			 (internet--ip-link-wireless-up-command)
 			 " && "
 			 (internet--wpa-supplicant-connect-command
 			  (shell-quote-argument network-name))
 			 " && "
-			 internet--dhclient-get-wireless-ip-address-command)))
+			 (internet--dhclient-get-wireless-ip-address-command))))
 
     (async-shell-command command process-buffer process-buffer)
 
@@ -381,9 +381,9 @@ without the suffix."
 			 " && "
 			 internet--kill-wpa-supplicant-command
 			 " && "
-			 internet--ip-link-wireless-down-command
+			 (internet--ip-link-wireless-down-command)
 			 " && "
-			 internet--rfkill-block-command)))
+			 (internet--rfkill-block-command))))
 
     (async-shell-command command process-buffer process-buffer)
 
@@ -413,14 +413,14 @@ VPN is the name of the vpn to connect to."
 
   (let* ((process-buffer "internet-wireless-openvpn-connect")
 
-	 (command (concat internet--rfkill-unblock-command
+	 (command (concat (internet--rfkill-unblock-command)
 			  " && "
-			  internet--ip-link-wireless-up-command
+			  (internet--ip-link-wireless-up-command)
 			  " && "
 			  (internet--wpa-supplicant-connect-command
 			   (shell-quote-argument wireless-network))
 			  " && "
-			  internet--dhclient-get-wireless-ip-address-command
+			  (internet--dhclient-get-wireless-ip-address-command)
 			  " && "
 			  (internet--openvpn-connect-command vpn))))
 
@@ -438,9 +438,9 @@ VPN is the name of the vpn to connect to."
 			 " && "
 			 internet--kill-wpa-supplicant-command
 			 " && "
-			 internet--ip-link-wireless-down-command
+			 (internet--ip-link-wireless-down-command)
 			 " && "
-			 internet--rfkill-block-command)))
+			 (internet--rfkill-block-command))))
 
     (async-shell-command command process-buffer process-buffer)
 
