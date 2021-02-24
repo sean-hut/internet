@@ -54,30 +54,30 @@
 ;; ethernet connection configuration variables ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar internet-ethernet-interface nil
+(defvar internet-ethernet-interface "enp3s0"
   "Ethernet interface.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; wireless connection configuration variables ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar internet-wpa-supplicant-config-directory nil
+(defvar internet-wpa-supplicant-config-directory "/etc/wpa_supplicant/"
   "Directory where wpa_supplicant configuration files are located.")
 
-(defvar internet-rfkill-device-id nil
+(defvar internet-rfkill-device-id "0"
   "Device ID for rfkill.")
 
-(defvar internet-wireless-interface nil
+(defvar internet-wireless-interface "wlp4s0"
   "Wireless interface.")
 
-(defvar internet-wpa-supplicant-driver nil
+(defvar internet-wpa-supplicant-driver "nl80211"
   "Driver to be used with wpa_supplicant.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; openvpn connection configuration variables ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar internet-openvpn-config-directory nil
+(defvar internet-openvpn-config-directory "/home/user-name/openvpn/configurations/"
   "The directory where openvpn configuration files are located.")
 
 ;;;;;;;;;;;;;;;;;;;;;
